@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heart Disease Risk — HealthPredict AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">HealthPredict <span>AI</span></a>
+  <nav>
+    <a href="heart.html">Heart</a>
+    <a href="diabetes.html">Diabetes</a>
+    <a href="liver.html">Liver</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="page-header">
+    <a href="index.html" class="back-link">&#8592; Home</a>
+    <div class="page-title">
+      <h1>&#10084;&#65039; Heart Disease Risk Assessment</h1>
+      <p>Enter your cardiovascular health parameters below</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <form id="heart-form" onsubmit="submitHeart(event)">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="age">Age (years)</label>
+          <input type="number" id="age" name="age" min="1" max="120" placeholder="e.g. 55" required />
+          <span class="hint">Range: 1 – 120</span>
+        </div>
+
+        <div class="form-group">
+          <label for="sex">Sex</label>
+          <select id="sex" name="sex" required>
+            <option value="" disabled selected>Select</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cp">Chest Pain Type</label>
+          <select id="cp" name="cp" required>
+            <option value="" disabled selected>Select type</option>
+            <option value="0">Typical Angina (0)</option>
+            <option value="1">Atypical Angina (1)</option>
+            <option value="2">Non-Anginal Pain (2)</option>
+            <option value="3">Asymptomatic (3)</option>
+          </select>
+          <span class="hint">0 = Typical, 3 = Asymptomatic</span>
+        </div>
+
+        <div class="form-group">
+          <label for="trestbps">Resting Blood Pressure (mm Hg)</label>
+          <input type="number" id="trestbps" name="trestbps" min="80" max="250" placeholder="e.g. 130" required />
+          <span class="hint">Range: 80 – 250 mm Hg</span>
+        </div>
+
+        <div class="form-group">
+          <label for="chol">Serum Cholesterol (mg/dl)</label>
+          <input type="number" id="chol" name="chol" min="100" max="600" placeholder="e.g. 240" required />
+          <span class="hint">Range: 100 – 600 mg/dl</span>
+        </div>
+
+        <div class="form-group">
+          <label for="fbs">Fasting Blood Sugar &gt; 120 mg/dl</label>
+          <select id="fbs" name="fbs" required>
+            <option value="" disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="restecg">Resting ECG Result</label>
+          <select id="restecg" name="restecg" required>
+            <option value="" disabled selected>Select</option>
+            <option value="0">Normal (0)</option>
+            <option value="1">ST-T Abnormality (1)</option>
+            <option value="2">LV Hypertrophy (2)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="thalach">Max Heart Rate Achieved (bpm)</label>
+          <input type="number" id="thalach" name="thalach" min="60" max="220" placeholder="e.g. 150" required />
+          <span class="hint">Range: 60 – 220 bpm</span>
+        </div>
+
+        <div class="form-group">
+          <label for="exang">Exercise-Induced Angina</label>
+          <select id="exang" name="exang" required>
+            <option value="" disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="oldpeak">ST Depression (Oldpeak)</label>
+          <input type="number" id="oldpeak" name="oldpeak" min="0" max="10" step="0.1" placeholder="e.g. 1.5" required />
+          <span class="hint">Range: 0.0 – 6.2</span>
+        </div>
+
+        <div class="form-group">
+          <label for="slope">Slope of Peak Exercise ST</label>
+          <select id="slope" name="slope" required>
+            <option value="" disabled selected>Select</option>
+            <option value="0">Upsloping (0)</option>
+            <option value="1">Flat (1)</option>
+            <option value="2">Downsloping (2)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ca">Major Vessels (0–4) by Fluoroscopy</label>
+          <select id="ca" name="ca" required>
+            <option value="" disabled selected>Select</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="thal">Thalassemia</label>
+          <select id="thal" name="thal" required>
+            <option value="" disabled selected>Select</option>
+            <option value="0">Normal (0)</option>
+            <option value="1">Fixed Defect (1)</option>
+            <option value="2">Reversible Defect (2)</option>
+            <option value="3">Other (3)</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-submit" id="submit-btn">Get Prediction</button>
+        <div class="spinner" id="spinner"></div>
+      </div>
+    </form>
+
+    <div id="result-box"></div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Educational Use Only:</strong> This prediction is based on statistical patterns and should not be used for clinical diagnosis. Please consult a doctor for any health concerns.
+  </div>
+</div>
+
+<footer>
+  <p>HealthPredict AI &mdash; Heart Disease model trained on UCI Cleveland Heart Disease Dataset</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabetes Risk — HealthPredict AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">HealthPredict <span>AI</span></a>
+  <nav>
+    <a href="heart.html">Heart</a>
+    <a href="diabetes.html">Diabetes</a>
+    <a href="liver.html">Liver</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="page-header">
+    <a href="index.html" class="back-link">&#8592; Home</a>
+    <div class="page-title">
+      <h1>&#129518; Diabetes Risk Assessment</h1>
+      <p>Enter your metabolic health parameters below</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <form id="diabetes-form" onsubmit="submitDiabetes(event)">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="Pregnancies">Pregnancies</label>
+          <input type="number" id="Pregnancies" name="Pregnancies" min="0" max="20" placeholder="e.g. 2" required />
+          <span class="hint">Number of times pregnant (0 if male)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Glucose">Plasma Glucose (mg/dL)</label>
+          <input type="number" id="Glucose" name="Glucose" min="0" max="300" placeholder="e.g. 120" required />
+          <span class="hint">2-hour oral glucose tolerance test</span>
+        </div>
+
+        <div class="form-group">
+          <label for="BloodPressure">Diastolic Blood Pressure (mm Hg)</label>
+          <input type="number" id="BloodPressure" name="BloodPressure" min="0" max="150" placeholder="e.g. 70" required />
+          <span class="hint">Range: 0 – 122 mm Hg</span>
+        </div>
+
+        <div class="form-group">
+          <label for="SkinThickness">Skin Thickness (mm)</label>
+          <input type="number" id="SkinThickness" name="SkinThickness" min="0" max="100" placeholder="e.g. 25" required />
+          <span class="hint">Triceps skinfold thickness</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Insulin">2-Hour Serum Insulin (mu U/ml)</label>
+          <input type="number" id="Insulin" name="Insulin" min="0" max="900" placeholder="e.g. 85" required />
+          <span class="hint">Range: 0 – 846 mu U/ml</span>
+        </div>
+
+        <div class="form-group">
+          <label for="BMI">Body Mass Index (kg/m&sup2;)</label>
+          <input type="number" id="BMI" name="BMI" min="0" max="80" step="0.1" placeholder="e.g. 28.5" required />
+          <span class="hint">Weight (kg) / Height (m)&sup2;</span>
+        </div>
+
+        <div class="form-group">
+          <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function</label>
+          <input type="number" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" min="0" max="3" step="0.001" placeholder="e.g. 0.627" required />
+          <span class="hint">Family history score (0.078 – 2.42)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Age">Age (years)</label>
+          <input type="number" id="Age" name="Age" min="1" max="120" placeholder="e.g. 35" required />
+          <span class="hint">Range: 21 – 81</span>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-submit" id="submit-btn">Get Prediction</button>
+        <div class="spinner" id="spinner"></div>
+      </div>
+    </form>
+
+    <div id="result-box"></div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Educational Use Only:</strong> This prediction is based on statistical patterns and should not be used for clinical diagnosis. Please consult a doctor for any health concerns.
+  </div>
+</div>
+
+<footer>
+  <p>HealthPredict AI &mdash; Diabetes model trained on Pima Indians Diabetes Database (NIDDK)</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
